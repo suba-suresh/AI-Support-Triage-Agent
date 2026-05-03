@@ -1,54 +1,118 @@
-Safety-First AI Support Triage Agent
-A deterministic support triage system built for the HackerRank Orchestrate (May 2026) challenge.
 
-Overview
-This project processes support tickets and decides whether to reply automatically or escalate for human review — using only the provided local support corpus, with no hallucinated or unsupported answers.
+# 🛡️ Safety-First AI Support Triage Agent
 
-Approach
-The agent follows a straightforward, auditable pipeline:
+A deterministic support triage system designed to safely process support tickets and decide whether to **reply automatically** or **escalate for human review**.
 
-Read support tickets from CSV
-Classify product area and request type using rule-based logic
-Retrieve relevant documents from the local corpus
-Apply escalation logic for sensitive or uncertain cases
-Generate a grounded response and justification
-Write structured output to CSV
+Built as part of the *HackerRank Orchestrate (May 2026)* challenge.
 
+---
 
-Key Design Principles
+## 🚀 Overview
 
-Safety-first — escalate instead of guessing when uncertain
-Deterministic — rule-based decisions for consistency and auditability
-Grounded — responses drawn only from provided documentation
-Explainable — every output includes a human-readable justification
+This project focuses on building a **safe, explainable, and reliable AI system** that operates under strict constraints:
 
+- Uses only the provided local support corpus  
+- Avoids hallucinated or unsupported responses  
+- Prioritises escalation for sensitive or uncertain cases  
 
-Output
-Results are written to support_tickets/output.csv. Each row includes:
-FieldDescriptionresponseGenerated reply or escalation messageproduct_areaClassified topic arearequest_typeType of request detectedstatusReplied or EscalatedjustificationReasoning behind the decision
+The goal is not just to answer tickets — but to ensure **correct and safe decision-making**.
 
-Tech Stack
+---
 
-Python 3
-CSV processing
-Rule-based classification
-Local file-based corpus retrieval
+## 🧠 System Design
 
+The agent follows a simple, auditable pipeline:
 
-Trade-offs
-Strengths
+```
 
-Safe, predictable, and easy to debug
-No risk of hallucinated support policies
-No external API dependencies
+Ticket Input → Classification → Retrieval → Escalation Decision → Response → Output
 
-Limitations
+```
 
-Keyword matching may miss semantic variations in phrasing
-Less flexible than embedding-based or LLM-driven retrieval
-Future versions could add confidence scoring and semantic search
+### Flow:
+1. Load support tickets from CSV  
+2. Classify product area and request type  
+3. Retrieve relevant documents from local corpus  
+4. Apply escalation rules for sensitive cases  
+5. Generate grounded response and justification  
+6. Write structured output to CSV  
 
+---
 
-How to Run
+## ⚙️ Key Principles
+
+- **Safety-first**  
+  Escalate instead of guessing when confidence is low  
+
+- **Deterministic**  
+  Rule-based logic ensures predictable and consistent behaviour  
+
+- **Grounded**  
+  Responses are strictly derived from the provided documentation  
+
+- **Explainable**  
+  Every decision includes a clear justification  
+
+---
+
+## 📊 Output
+
+Results are written to:
+
+```
+
+support_tickets/output.csv
+
+````
+
+Each ticket produces:
+
+| Field          | Description |
+|----------------|------------|
+| response       | Generated reply or escalation message |
+| product_area   | Classified topic area |
+| request_type   | Type of request |
+| status         | `Replied` or `Escalated` |
+| justification  | Reason for the decision |
+
+---
+
+## 🛠️ Tech Stack
+
+- Python 3  
+- CSV-based data processing  
+- Rule-based classification  
+- Local corpus retrieval  
+
+---
+
+## ⚖️ Trade-offs
+
+### Strengths
+- Safe and predictable behaviour  
+- No hallucination risk  
+- Easy to audit and debug  
+- No dependency on external APIs  
+
+### Limitations
+- Keyword-based (limited semantic understanding)  
+- Less flexible than embedding/LLM-based systems  
+
+---
+
+## ▶️ How to Run
+
 ```bash
-python3 code/main.py```
+python3 main.py
+````
+
+---
+
+## 💡 Key Insight
+
+> Building AI systems is not just about intelligence —
+> it's about designing systems that are safe, reliable, and know when to escalate.
+
+```
+
+
